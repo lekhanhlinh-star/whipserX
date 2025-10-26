@@ -2,7 +2,7 @@ import runpod
 from asr_service import ASRService
 service = ASRService(
         model_name='large-v2',
-        batch_size=8,
+        batch_size=64,
         compute_type='int8'
     )
 def handler(event):
