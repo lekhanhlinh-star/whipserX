@@ -1,7 +1,7 @@
 import runpod
 from asr_service import ASRService
 service = ASRService(
-        model_name='tiny',
+        model_name='large-v2',
         batch_size=8,
         compute_type='int8'
     )
