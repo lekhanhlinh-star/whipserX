@@ -1,0 +1,11 @@
+services:
+  backend:
+    build:
+      context: .
+    container_name: speech_minute_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    stdin_open: true
+    tty: true
