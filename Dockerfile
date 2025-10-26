@@ -11,11 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     git \
     python3-pip \
-    python3.10 \
-    python3.10-dev \
-    python3.10-venv \
+    python3.11 \
+    python3.11-dev \
+    python3.11-venv \
     software-properties-common && \
-    ln -sf python3.10 /usr/bin/python && \
+    ln -sf python3.11 /usr/bin/python && \
     ln -sf pip3 /usr/bin/pip && \
     rm -rf /var/lib/apt/lists/*
 
@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --ignore-installed --upgrade pip setuptools && \
     pip install  --ignore-installed -r requirements.txt
 COPY . .
-
+RUN python -m whisperx large-v2 
 RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
