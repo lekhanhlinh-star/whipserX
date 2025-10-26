@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --ignore-installed --upgrade pip setuptools && \
     pip install  --ignore-installed -r requirements.txt
 COPY . .
-RUN python -m whisperx large-v2 
+# RUN python -m whisperx large-v2 
 RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
