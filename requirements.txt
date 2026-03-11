@@ -1,5 +1,10 @@
-whisperx==3.7.4
-# torch==2.5.1
-# torchvision==0.20.1 
-# torchaudio==2.5.1
+fastapi
+uvicorn
+boto3
+sqlalchemy
+pydantic
+pyjwt
 runpod
+celery
+redis
+psycopg2-binary

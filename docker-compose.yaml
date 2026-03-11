@@ -1,11 +1,54 @@
 services:
   backend:
+    image : linh2002/speech_minute_multi_backend:v2
     build:
       context: .
     container_name: speech_minute_backend
     ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
+      - "9000:9000"
+   
     stdin_open: true
     tty: true
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    
+    networks:
+      - backend_net
+    volumes:
+      - ./media:/app/media
+
+  db:
+    image: postgres:15
+    container_name: speech_minute_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tts_dataset_user
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: tts_dataset
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend_net
+
+  redis:
+    image: redis:7
+    container_name: speech_minute_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - backend_net
+
+volumes:
+  pgdata:
+  redisdata:
+
+networks:
+  backend_net:
